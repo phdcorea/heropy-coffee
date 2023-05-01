@@ -1,0 +1,125 @@
+git 사용 및 설정
+---------------
+I. git 사용법
+II. git 초기화와 삭제
+III. Branch
+IV. 참고
+---------------------------------------------
+
+I. git 사용법
+-------------
+1. git 설치와 github.com 회원가입
+- git을 컴퓨터에 설치함: local 저장소
+- git --version: 버전 확인
+- github.com 회원가입
+
+2. 사용자 정보 git에 등록: local 
+- git config --global user.name 'Jerry'
+- git config --global user.email 'Jerry@korea.com'
+  = github.com에 등록한 이름과 메일 주소를 사용함
+- 등록정보 확인
+  = git config --global --list
+
+3. git init -> # VSCode에서 CLI로 직접 수행함
+- git의 local 저장소를 초기화하면서 생성함: 현재 디렉토리
+- git 저장소는 숨은 디렉토리로 생성됨: .git
+  =powershell에서 ls -h 확인
+
+4. git status
+- 변경 추적이 안 되는 파일: 빨간색 (버전관리 대상 아님)
+
+5. git add <파일명>
+- 변경 관리 대상 파일을 등록함: filename, 'file name', file*, *
+- git status: 변경 관리 대상 -> 녹색
+- 아직, github에는 업로드하지 않았음
+- [참고]
+  = 파일명에 (괄호) 등 특수문자는 git add에서 인식 안 됨
+  = git 취소: git reset -> 모든 파일이 빨간색으로 변함
+  = 모든 파일 대상: .(현재 디렉토리) 또는 * (모든 파일)
+  = 현재 디렉토리의 모든 파일을 관리할 경우: 제외 대상을 지정함(IV.참고-5)
+  = 줄바꿈 문자 변경: VSCode에서 windownw는 CRLF로 변경함
+
+6. git commit -m '메시지'
+- git에 등록된 변경 추적 파일을 변경 추적 완료함
+  = commit하면 git status 목록에서 사라짐
+- 메시지: github에서 파일 옆에 설명으로 나타남 (파일 설명)
+- git log로 확인
+  = add이후 변경하면 다시 add해야 함-> 3번부터 다시 함
+
+7. repogitory 추가
+- github.com 에 파일을 위한 새 repository를 추가함
+- id가 없으면 가입해야 함
+
+8. github.com에서 repository link를 복사함
+
+9. git remote add origin https://github.com/phdcorea/heropy-                                                          coffee.git
+- git에 repository 주소를 origin으로 등록함
+- origin: 저장소 별명, https:://...주소 이름(긴 이름을 origin으로 등록함)
+  = 현재, git에는 add에서 등록한 파일(1개 또는 여러개)이 등록되어 있음
+
+10. git push origin master 
+- local의 git에 등록된 파일을 github.com의 repository에 업로드함
+- origin: 저장소 별명, repository link(주소)
+- master: 변경 추적 branch 
+  = 변경 관리에서 master가 주 브랜치임
+  = branch는 일반적으로 master 또는 main (main은 잘 안 됨)
+
+11. github.com에서 확인함
+- branch: master를 선택함
+
+12. 파일 변경 후 재등록
+- add, commit, push를 다시함
+
+13. 파일 하나 추가 하자
+- git add <파일명>
+- git status로 확인 -> 파일 녹색
+- git commit -m '연습 파일' -> 파일에 대한 설명 추가
+- git push origin master -> 7번의 링크와 master에 업로드 함
+- github.com에서 확인
+
+---------------------------------------------
+II. git 초기화와 삭제
+--------------------
+1. git init
+- git add 등을 초기화함
+
+2. rm -rf .git
+- GitHub Bash를 실행하여 삭제함
+- 숨은 디렉토리 .git과 서브 디렉토리를 삭제함: 전체 환경을 삭제함
+- 새로운 환경을 다시 구축하고자 할 때 사용함
+
+---------------------------------------------
+III. Branch
+- branch는 git이 관리하는 대상
+  = 각 branch는 자신이 관리하는 파일만 보임
+- branch 변경: git checkout master -> master로 변경함
+- branch에 따라 dir로 볼 수 있는 현재 파일이 달라짐
+- branch 이름 변경: git branch -m master main
+
+---------------------------------------------
+IV. 참고
+--------------
+1. 한 branch에 파일을 하나씩 올릴 수 있다. 
+  = main에는 안 올라감
+
+2. 파일이 변경된 경우
+- 위 [11]번을 수행하여 다시 업로드함
+  = 디렉토리 전체를 재 등록하려면: git add . 사용함
+
+3. 숨겨진 파일, 디렉토리 확인
+- 윈도우 powershell에서 ls -h, dir -h로 확인
+- 윈도우 탐색기의 View 옵션-보기/숨기기에서 숨은파일 선택
+
+4. GitHub에서 브랜치 삭제
+- 삭제할 브랜치를 선택하고 'Setting'- 맨아래 'Danger Zone'에서 삭제함
+
+5. 제외 대상 관리
+- root 디렉토리에 .DS_Store 파일을 작성함
+- 변경 추적 제외 대상 파일명을 등록함: 모든 파일 add할 때 필요함
+
+6. git 수행 방법
+- Git GUI: 그래픽 화면
+- Git Bash: Command Line Interface, 리눅스 명령 사용 (권장)
+
+;-p
+
